@@ -53,8 +53,12 @@ pentagram_bb
 
 
 #STEREOGRAM
-overlay(pic1, pic2)
-overlay_prac(1/n, pic1, pic2)
+overlay(top, bottom)
+overlay_frac(1/n, top, bot)
+=> top occupies 1/n of depth
+scale()
+scale_independent()
+translate()
 # =>
 
 #scaling
@@ -64,6 +68,5 @@ scale(1/2, pic1)
 stereogram(depth_map)
 
 ## to try out
-overlay_prac(1/n, pic1, pic2)
 show(stac_frac(1/3, pic1, pic2))
 show(stackn(5, quarter_turn_right(stackn(5, quarter_turn_left(heart_bb)))))
