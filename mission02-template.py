@@ -62,27 +62,20 @@ def dual_fractal(pic1, pic2, n):
 ###########
 # Task 1d #
 ###########
-
 def dual_fractal_iter(pic1, pic2, n):
     # if n is even, rightmost should be pic2.
     if n % 2 == 1:
-        right_pic, left_pic = pic1, pic2
+        right = pic
     else:
-        right_pic, left_pic = pic2, pic1
-
-    i = n-1
-    right = stackn(2**i, right_pic)
-    while i > 0:
-        i -= 1            
-        left = stackn(2**i, left_pic)
-        right = beside(left, right)
-
-        right_pic, left_pic = left_pic, right_pic
-            
+        right = pic2
+      
+    for i in range(n, 1, -1):
+        pic1, pic2 = pic2, pic1
+        right = beside(pic2, stack(right, right))
     return right
 
 # Test
-# show(dual_fractal_iter(make_cross(rcross_bb), make_cross(nova_bb), 3))
+show(dual_fractal_iter(make_cross(rcross_bb), make_cross(nova_bb), 3))
 # show(dual_fractal_iter(make_cross(rcross_bb), make_cross(nova_bb), 4))
 # show(dual_fractal_iter(make_cross(rcross_bb), make_cross(nova_bb), 7))
 # Write your additional test cases here
