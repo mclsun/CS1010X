@@ -13,12 +13,14 @@ import math
 # Task 1 #
 ##########
 
-def tree(params):
-    # Fill in code here
-    return
+def tree(n, pic):
+    result = pic
+    for i in range(2, n+1):
+        result = overlay_frac(1/i, scale((n-i+1)/n, pic), result)
+    return result
 
 # Test
-#show(tree(4, circle_bb))
+# show(tree(4, circle_bb))
 
 
 ##########
@@ -28,9 +30,19 @@ def tree(params):
 # use help(math) to see functions in math module
 # e.g to find out value of sin(pi/2), call math.sin(math.pi/2)
 
-def helix(params):
-    # Fill in code here
-    return
+def helix(pic, n):
+    R = 1/2 - 1/n
+    A = 2 * math.pi/n
+    def small_pic(i):
+        return translate(R * math.cos(math.pi/2 + i * A),
+                         R * math.sin(math.pi/2 + i * A),
+                         scale(2/n, pic))
+    result = small_pic(1)
+    for i in range(2, n+1):
+        result = overlay_frac(1/i, small_pic(i), result)
+    return result
+    
+    
 
 # Test
-#show(helix(make_cross(rcross_bb), 9))
+show(helix(make_cross(rcross_bb), 12))
